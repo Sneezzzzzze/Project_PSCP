@@ -2,7 +2,6 @@
 import pygame
 from pygame.locals import *
 pygame.init()
-
 clock = pygame.time.Clock()
 fps = 60
 width = 540
@@ -15,15 +14,28 @@ ground_scroll = 0
 scroll_speed = 4
 
 bg = pygame.image.load('img/Sprite-0003.png')
-cloud = pygame.image.load('img/Sprite-0004.png')
+ground_img = pygame.image.load('img/Sprite-0004.png')
+
+class Pipe(pygame.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load('img/pipe.png')
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [x, y]
+#btm_pipe = Pipe(300, int(screen_height / 2))
 
 run = True
 while run:
-    clock.tick(fps) #slow cloud speed (time)
-    screen.blit(bg, (0, 0)) #sky background
-    screen.blit(cloud, (ground_scroll, 0)) #cloud background
+    clock.tick(fps)
+
+    screen.blit(bg, (0, 0))
+
+    #pip_group.draw(screen)
+    #pipe_group.update()
+    screen.blit(ground_img, (ground_scroll, 0))
     ground_scroll -= scroll_speed
-    if abs(ground_scroll) > 540: #loop scrolling
+
+    if abs(ground_scroll) > 540:
         ground_scroll = 0
 
     for event in pygame.event.get():
