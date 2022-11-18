@@ -15,5 +15,10 @@ ground_scroll = 0
 scroll_speed = 4
 
 #load img
+<<<<<<< HEAD
 bg = pygame.image.load('img/Sprite-0003')#Not work yet until we got all files.
 ground_img = pygame.image.load('img/nothing.png')#this one too.
+=======
+bg = pygame.image.load('img/Sprite-0003.png')
+ground_img = pygame.image.load('img/Sprite-0004.png')
+>>>>>>> 2d4dea3ce4a34b1a5103abbe1dd126ae889d8f4e
