@@ -15,15 +15,13 @@ ground_scroll = 0
 scroll_speed = 4
 
 bg = pygame.image.load('img/Sprite-0003.png')
-ground_img = pygame.image.load('img/Sprite-0004.png')
+cloud = pygame.image.load('img/Sprite-0004.png')
 
 run = True
 while run:
     clock.tick(fps)
-
-    screen.blit(bg, (0, 0))
-
-    screen.blit(ground_img, (ground_scroll, 0))
+    screen.blit(bg, (0, 0)) #sky background
+    screen.blit(cloud, (ground_scroll, 0)) #cloud background
     ground_scroll -= scroll_speed
     if abs(ground_scroll) > 540:
         ground_scroll = 0
