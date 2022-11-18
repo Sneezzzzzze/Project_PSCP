@@ -14,6 +14,5 @@ pygame.display.set_caption('Moai\'s revenger')
 ground_scroll = 0
 scroll_speed = 4
 
-bg = pygame.image.load('img/Sprite-0003')#Not work yet until we got all files.
-ground_img = pygame.image.load('img/nothing.png')#this one too.
-
+bg = pygame.image.load('img/Sprite-0003.png')#Not work yet until we got all files.
+ground_img = pygame.image.load('img/Sprite-0004.png')#this one too.
