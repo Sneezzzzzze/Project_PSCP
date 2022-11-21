@@ -15,8 +15,8 @@ cloud_speed = 1
 grass_scroll = 0
 grass_speed = 3
 
-bg = pygame.image.load('img/Sprite-0003.png')
-bg_cloud = pygame.image.load('img/Sprite-0004.png')
+bg = pygame.image.load('img/background.png')
+bg_cloud = pygame.image.load('img/cloud.png')
 bg_sea = pygame.image.load('img/sea.png')
 bg_grass = pygame.image.load('img/grass.png')
 
