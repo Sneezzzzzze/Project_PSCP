@@ -2,7 +2,6 @@
 import pygame
 from pygame.locals import *
 pygame.init()
-    #Part 1 Background
 clock = pygame.time.Clock()
 fps = 60
 width = 540
@@ -46,7 +45,3 @@ while run:
     pygame.display.update()
 
 pygame.quit()
-
-#------------------------------------------------------------------
-
-    #Part 2 Sprite Animation
