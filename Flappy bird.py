@@ -17,12 +17,12 @@ scroll_speed = 4
 bg = pygame.image.load('img/Sprite-0003.png')
 ground_img = pygame.image.load('img/Sprite-0004.png')
 
-class Pipe(pygame.Sprite):
-    def __init__(self, x, y):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load('img/pipe.png')
-        self.rect = self.image.get_rect()
-        self.rect.topleft = [x, y]
+#class Pipe(pygame.Sprite):
+    #def __init__(self, x, y):
+        #pygame.sprite.Sprite.__init__(self)
+        #self.image = pygame.image.load('img/pipe.png')
+        #self.rect = self.image.get_rect()
+        #self.rect.topleft = [x, y]
 #btm_pipe = Pipe(300, int(screen_height / 2))
 
 run = True
