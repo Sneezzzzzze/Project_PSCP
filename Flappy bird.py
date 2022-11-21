@@ -10,11 +10,15 @@ screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Moai\'s revenger')
 
 #define game variables
-ground_scroll = 0
-scroll_speed = 4
+cloud_scroll = 0
+cloud_speed = 1
+grass_scroll = 0
+grass_speed = 3
 
 bg = pygame.image.load('img/Sprite-0003.png')
-ground_img = pygame.image.load('img/Sprite-0004.png')
+bg_cloud = pygame.image.load('img/Sprite-0004.png')
+bg_sea = pygame.image.load('img/sea.png')
+bg_grass = pygame.image.load('img/grass.png')
 
 #class Pipe(pygame.Sprite):
     #def __init__(self, x, y):
@@ -29,14 +33,22 @@ while run:
     clock.tick(fps)
 
     screen.blit(bg, (0, 0))
+    
+    screen.blit(bg_sea, (0, 0))
 
     #pip_group.draw(screen)
     #pipe_group.update()
-    screen.blit(ground_img, (ground_scroll, 0))
-    ground_scroll -= scroll_speed
+    screen.blit(bg_cloud, (cloud_scroll, 0))
+    cloud_scroll -= cloud_speed
+    
+    screen.blit(bg_grass, (grass_scroll, 75))
+    grass_scroll -= grass_speed
 
-    if abs(ground_scroll) > 540:
-        ground_scroll = 0
+
+    if abs(cloud_scroll) > 540:
+        cloud_scroll = 0
+    if abs(grass_scroll) > 540:
+        grass_scroll = 0
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
