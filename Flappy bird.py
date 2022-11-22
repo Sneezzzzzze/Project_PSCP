@@ -20,13 +20,18 @@ bg_cloud = pygame.image.load('img/cloud.png')
 bg_sea = pygame.image.load('img/sea.png')
 bg_grass = pygame.image.load('img/grass.png')
 
-#class Pipe(pygame.Sprite):
-    #def __init__(self, x, y):
-        #pygame.sprite.Sprite.__init__(self)
-        #self.image = pygame.image.load('img/pipe.png')
-        #self.rect = self.image.get_rect()
-        #self.rect.topleft = [x, y]
-#btm_pipe = Pipe(300, int(screen_height / 2))
+class Moai(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load('img/moai.gif')
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [x, y]
+        
+moai_group = pygame.sprite.Group()
+
+flappy = Moai(60, int(width / 2),)
+
+moai_group.add(flappy)
 
 run = True
 while run:
@@ -34,16 +39,15 @@ while run:
 
     screen.blit(bg, (0, 0))
     
+    moai_group.draw(screen)
+    
     screen.blit(bg_sea, (0, 0))
 
-    #pip_group.draw(screen)
-    #pipe_group.update()
     screen.blit(bg_cloud, (cloud_scroll, 0))
     cloud_scroll -= cloud_speed
     
     screen.blit(bg_grass, (grass_scroll, 25))
     grass_scroll -= grass_speed
-
 
     if abs(cloud_scroll) > 540:
         cloud_scroll = 0
