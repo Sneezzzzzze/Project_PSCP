@@ -23,13 +23,13 @@ bg_grass = pygame.image.load('img/grass.png')
 class Moai(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load('img/moai.gif')
+        self.image = pygame.image.load('img/moai1.png')
         self.rect = self.image.get_rect()
         self.rect.topleft = [x, y]
         
 moai_group = pygame.sprite.Group()
 
-flappy = Moai(60, int(width / 2),)
+flappy = Moai(60, 250)
 
 moai_group.add(flappy)
 
