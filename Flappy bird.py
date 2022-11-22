@@ -37,8 +37,8 @@ class Moai(pygame.sprite.Sprite):
     def update(self):
         """animation moai sprite"""
         self.counter += 1
-        flap_cooldown = 5
-        if self.counter > flap_cooldown:
+        speed_animation = 3
+        if self.counter > speed_animation:
             self.counter = 0
             self.index += 1
             if self.index >= len(self.images):
