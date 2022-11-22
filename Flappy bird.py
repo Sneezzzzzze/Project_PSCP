@@ -41,7 +41,7 @@ while run:
     screen.blit(bg_cloud, (cloud_scroll, 0))
     cloud_scroll -= cloud_speed
     
-    screen.blit(bg_grass, (grass_scroll, 75))
+    screen.blit(bg_grass, (grass_scroll, 25))
     grass_scroll -= grass_speed
 
 
