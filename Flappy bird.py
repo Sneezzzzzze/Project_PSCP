@@ -14,6 +14,8 @@ cloud_scroll = 0
 cloud_speed = 1
 grass_scroll = 0
 grass_speed = 3
+flying = False
+game_over = False
 
 bg = pygame.image.load('img/background.png')
 bg_cloud = pygame.image.load('img/cloud.png')
@@ -27,23 +29,47 @@ class Moai(pygame.sprite.Sprite):
         self.images = []
         self.index = 0
         self.counter = 0
-        for i in range(1, 4):
-            img = pygame.image.load(f'img/moai{i}.png')
+        for i in range(-2, 3):
+            img = pygame.image.load(f'img/moai{abs(i)}.png')
             self.images.append(img)
         self.image = self.images[self.index]
         self.rect = self.image.get_rect()
         self.rect.center = [x, y]
+        self.garvity = 0
+        self.clicked = False
 
     def update(self):
         """animation moai sprite"""
-        self.counter += 1
-        speed_animation = 3
-        if self.counter > speed_animation:
-            self.counter = 0
-            self.index += 1
-            if self.index >= len(self.images):
-                self.index = 0
-        self.image = self.images[self.index]
+        if flying == True:
+            #garvity
+            self.garvity += 0.5
+            if self.garvity > 10: #moai speed falling
+                self.garvity = 10
+            if self.rect.bottom < 587: #touch grass position
+                self.rect.y += int(self.garvity)
+
+        if game_over == False:
+            #moai jump
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
+                self.clicked = True
+                self.garvity = -7
+            if pygame.mouse.get_pressed()[0] == 1:
+                self.clicked = False
+
+            #maoi gif
+            self.counter += 1
+            speed_animation = 3
+            if self.counter > speed_animation:
+                self.counter = 0
+                self.index += 1
+                if self.index >= len(self.images):
+                    self.index = 0
+            self.image = self.images[self.index]
+            
+            #rotate the moai
+            self.image = pygame.transform.rotate(self.images[self.index], self.garvity * -1)
+        else:
+            self.image = pygame.transform.rotate(self.images[self.index], -90)
 
 moai_group = pygame.sprite.Group()
 
@@ -57,25 +83,33 @@ while run:
 
     screen.blit(bg, (0, 0))
 
-    moai_group.draw(screen)
-    moai_group.update()
-
     screen.blit(bg_sea, (0, 0))
-
+    
     screen.blit(bg_cloud, (cloud_scroll, 0))
     cloud_scroll -= cloud_speed
-
+    
     screen.blit(bg_grass, (grass_scroll, 25))
-    grass_scroll -= grass_speed
 
+    moai_group.draw(screen)
+    moai_group.update()
+    
+    #check moai touch grass
+    if flappy.rect.bottom > 587:
+        game_over = True
+        flying = False
+    
+    if game_over == False: #glass stop
+        grass_scroll -= grass_speed
+        if abs(grass_scroll) > 540:
+            grass_scroll = 0
     if abs(cloud_scroll) > 540:
         cloud_scroll = 0
-    if abs(grass_scroll) > 540:
-        grass_scroll = 0
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        if event.type == pygame.MOUSEBUTTONDOWN and flying == False and game_over == False:
+            flying = True
 
     pygame.display.update()
 
