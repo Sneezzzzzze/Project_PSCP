@@ -2,3 +2,4 @@
 # Day 1 learn how to using Github
 # Day 2 We test our bg and make cloud move
 # Day 3 Sprite Animation complete
+# Day 4 Adding Game Physics
