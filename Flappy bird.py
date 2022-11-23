@@ -11,7 +11,7 @@ pygame.display.set_caption('Moai\'s revenger')
 
 #define game variables
 cloud_scroll = 0
-cloud_speed = 1
+cloud_speed = 0.3
 grass_scroll = 0
 grass_speed = 3
 flying = False
