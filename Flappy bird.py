@@ -1,6 +1,7 @@
 '''Scrolling Background'''
 import pygame
 from pygame.locals import *
+import random
 pygame.init()
 clock = pygame.time.Clock()
 fps = 60
@@ -16,6 +17,10 @@ grass_scroll = 0
 grass_speed = 3
 flying = False
 game_over = False
+pipe_gap = 150
+pipe_frequency = 1500 #milliseconds
+last_pipe = pygame.time.get_ticks() - pipe_frequency
+
 
 bg = pygame.image.load('img/background.png')
 bg_cloud = pygame.image.load('img/cloud.png')
@@ -71,11 +76,34 @@ class Moai(pygame.sprite.Sprite):
         else:
             self.image = pygame.transform.rotate(self.images[self.index], -90)
 
-moai_group = pygame.sprite.Group()
 
+
+
+
+class Pipe(pygame.sprite.Sprite):
+    def __init__(self, x , y, position):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load('img/Sao.png')
+        self.rect = self.image.get_rect()
+
+        #position 1 is from the top, -1 is from the bottom
+        if position == 1:
+            self.image = pygame.transform.flip(self.image, False, True)
+            self.rect.bottomleft = [x, y - int(pipe_gap / 2)] #with gap
+        if position == -1:
+            self.rect.topleft = [x, y + int(pipe_gap / 2)] #with gap
+    def update(self):
+        self.rect.x -= grass_speed
+        if self.rect.right < 0:
+            self.kill()
+        
+
+moai_group = pygame.sprite.Group()
+pipe_group = pygame.sprite.Group()
 flappy = Moai(60, 275)
 
 moai_group.add(flappy)
+
 
 run = True
 while run:
@@ -92,16 +120,34 @@ while run:
 
     moai_group.draw(screen)
     moai_group.update()
+    pipe_group.draw(screen)
     
+    #look for collosion
+    if pygame.sprite.groupcollide(moai_group, pipe_group, False, False) or flappy.rect.top < 0:
+        game_over == True
+
     #check moai touch grass
-    if flappy.rect.bottom > 587:
+    if flappy.rect.bottom >= 587:
         game_over = True
         flying = False
     
-    if game_over == False: #glass stop
+    if game_over == False and flying == True: #glass stop
+
+        #generate new pipes
+        time_now = pygame.time.get_ticks()
+        if time_now - last_pipe > pipe_frequency:
+            pipe_height = random.randint(-100, 100)
+            btm_pipe = Pipe(width, (321 + pipe_height), -1)
+            top_pipe = Pipe(width, (321 + pipe_height), 1)
+            pipe_group.add(btm_pipe)
+            pipe_group.add(top_pipe)
+            last_pipe = time_now
+        
+        
         grass_scroll -= grass_speed
         if abs(grass_scroll) > 540:
             grass_scroll = 0
+        pipe_group.update()
     if abs(cloud_scroll) > 540:
         cloud_scroll = 0
 
