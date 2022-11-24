@@ -81,6 +81,7 @@ class Moai(pygame.sprite.Sprite):
 
 
 class Pipe(pygame.sprite.Sprite):
+    """creative pipe sprite"""
     def __init__(self, x , y, position):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load('img/Sao.png')
@@ -121,15 +122,13 @@ while run:
     moai_group.draw(screen)
     moai_group.update()
     pipe_group.draw(screen)
-    
-    #look for collosion
-    if pygame.sprite.groupcollide(moai_group, pipe_group, False, False) or flappy.rect.top < 0:
-        game_over == True
 
-    #check moai touch grass
-    if flappy.rect.bottom >= 587:
+    
+
+    #check moai touch grass and check moai touch pipe
+    if flappy.rect.bottom >= 587 or pygame.sprite.groupcollide(moai_group, pipe_group, False, False) or flappy.rect.top < 0:
         game_over = True
-        flying = False
+    #look for collosion
     
     if game_over == False and flying == True: #glass stop
 
@@ -137,8 +136,8 @@ while run:
         time_now = pygame.time.get_ticks()
         if time_now - last_pipe > pipe_frequency:
             pipe_height = random.randint(-100, 100)
-            btm_pipe = Pipe(width, (321 + pipe_height), -1)
-            top_pipe = Pipe(width, (321 + pipe_height), 1)
+            btm_pipe = Pipe(width, int(height / 2) + pipe_height, -1)
+            top_pipe = Pipe(width, int(height / 2) + pipe_height, 1)
             pipe_group.add(btm_pipe)
             pipe_group.add(top_pipe)
             last_pipe = time_now
@@ -147,6 +146,7 @@ while run:
         grass_scroll -= grass_speed
         if abs(grass_scroll) > 540:
             grass_scroll = 0
+
         pipe_group.update()
     if abs(cloud_scroll) > 540:
         cloud_scroll = 0
