@@ -10,6 +10,12 @@ height = 700
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Moai\'s revenger')
 
+#define font
+font = pygame.font.SysFont('Bauhaus 93', 60)
+
+#define colours
+white = (255, 255, 255)
+
 #define game variables
 cloud_scroll = 0
 cloud_speed = 0.3
@@ -20,12 +26,20 @@ game_over = False
 pipe_gap = 150
 pipe_frequency = 1500 #milliseconds
 last_pipe = pygame.time.get_ticks() - pipe_frequency
+score = 0 #score counter
+pass_pipe = False
 
 
 bg = pygame.image.load('img/background.png')
 bg_cloud = pygame.image.load('img/cloud.png')
 bg_sea = pygame.image.load('img/sea.png')
 bg_grass = pygame.image.load('img/grass.png')
+
+def draw_text(text, font, text_col, x, y):
+    '''__'''
+    img = font.render(text, True, text_col)
+    screen.blit(img, (x, y))
+
 
 class Moai(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -123,7 +137,17 @@ while run:
     moai_group.update()
     pipe_group.draw(screen)
 
-    
+    #check the score
+    if len(pipe_group) > 0:
+        if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.left\
+            and moai_group.sprites()[0].rect.right < pipe_group.sprites()[0].rect.right\
+            and pass_pipe == False:
+            pass_pipe = True
+        if pass_pipe == True:
+            if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.right:
+                score += 1
+                pass_pipe = False
+    draw_text(str(score), font, white, int(width / 2), 20)
 
     #check moai touch grass and check moai touch pipe
     if flappy.rect.bottom >= 587 or pygame.sprite.groupcollide(moai_group, pipe_group, False, False) or flappy.rect.top < 0:
