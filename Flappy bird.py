@@ -26,7 +26,7 @@ game_over = False
 pipe_gap = 150
 pipe_frequency = 1500 #milliseconds
 last_pipe = pygame.time.get_ticks() - pipe_frequency
-score = 0 #score counter
+score = 0
 pass_pipe = False
 
 
@@ -111,7 +111,7 @@ class Pipe(pygame.sprite.Sprite):
         self.rect.x -= grass_speed
         if self.rect.right < 0:
             self.kill()
-        
+
 
 moai_group = pygame.sprite.Group()
 pipe_group = pygame.sprite.Group()
@@ -139,9 +139,7 @@ while run:
 
     #check the score
     if len(pipe_group) > 0:
-        if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.left\
-            and moai_group.sprites()[0].rect.right < pipe_group.sprites()[0].rect.right\
-            and pass_pipe == False:
+        if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.left and moai_group.sprites()[0].rect.right < pipe_group.sprites()[0].rect.right and pass_pipe == False:
             pass_pipe = True
         if pass_pipe == True:
             if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.right:
