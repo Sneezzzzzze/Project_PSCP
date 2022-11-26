@@ -27,6 +27,7 @@ pipe_gap = 150
 pipe_frequency = 1500 #milliseconds
 last_pipe = pygame.time.get_ticks() - pipe_frequency
 score = 0
+real_score = 0
 pass_pipe = False
 
 
@@ -139,14 +140,14 @@ while run:
 
     #check the score
     if len(pipe_group) > 0:
-        if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.left and moai_group.sprites()[0].rect.right < pipe_group.sprites()[0].rect.right and pass_pipe == False:
+        if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.left and pass_pipe == False:
             pass_pipe = True
         if pass_pipe == True:
             if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.right:
                 score += 1
+                real_score = score / 9
                 pass_pipe = False
-
-    draw_text(str(score), font, color_txt, int(width / 2), 20)
+    draw_text('Score : '+str(int(real_score)), font, color_txt, 40, 20)
 
     #check moai touch grass and check moai touch pipe
     if flappy.rect.bottom >= 587 or pygame.sprite.groupcollide(moai_group, pipe_group, False, False) or flappy.rect.top < 0:

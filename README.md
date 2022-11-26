@@ -5,4 +5,4 @@
 # Day 4 Adding Game Physics
 # Day 5 Adding pipe
 # Day 6 trying to add score
-# Day 7 still trying from Day 6
+# Day 7 finally I can fix score
