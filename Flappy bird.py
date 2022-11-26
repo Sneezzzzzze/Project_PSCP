@@ -11,10 +11,10 @@ screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Moai\'s revenger')
 
 #define font
-font = pygame.font.SysFont('Bauhaus 93', 60)
+font = pygame.font.SysFont('Bauhaus 93', 60) #change font size and font here
 
 #define colours
-white = (255, 255, 255)
+color_txt = (0, 0, 0) #you guys can changencolour here
 
 #define game variables
 cloud_scroll = 0
@@ -36,7 +36,7 @@ bg_sea = pygame.image.load('img/sea.png')
 bg_grass = pygame.image.load('img/grass.png')
 
 def draw_text(text, font, text_col, x, y):
-    '''__'''
+    '''draw text in game'''
     img = font.render(text, True, text_col)
     screen.blit(img, (x, y))
 
@@ -115,7 +115,7 @@ class Pipe(pygame.sprite.Sprite):
 
 moai_group = pygame.sprite.Group()
 pipe_group = pygame.sprite.Group()
-flappy = Moai(60, 275)
+flappy = Moai(60, 275) #position of moai with x, y
 
 moai_group.add(flappy)
 
@@ -145,14 +145,15 @@ while run:
             if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.right:
                 score += 1
                 pass_pipe = False
-    draw_text(str(score), font, white, int(width / 2), 20)
+
+    draw_text(str(score), font, color_txt, int(width / 2), 20)
 
     #check moai touch grass and check moai touch pipe
     if flappy.rect.bottom >= 587 or pygame.sprite.groupcollide(moai_group, pipe_group, False, False) or flappy.rect.top < 0:
         game_over = True
     #look for collosion
     
-    if game_over == False and flying == True: #glass stop
+    if game_over == False and flying == True: #grass stop
 
         #generate new pipes
         time_now = pygame.time.get_ticks()
@@ -170,6 +171,7 @@ while run:
             grass_scroll = 0
 
         pipe_group.update()
+
     if abs(cloud_scroll) > 540:
         cloud_scroll = 0
 
