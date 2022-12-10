@@ -2,6 +2,7 @@
 import pygame
 from pygame.locals import *
 import random
+from pygame import mixer
 pygame.init()
 clock = pygame.time.Clock()
 fps = 60
@@ -36,6 +37,11 @@ bg_cloud = pygame.image.load('img/cloud.png')
 bg_sea = pygame.image.load('img/sea.png')
 bg_grass = pygame.image.load('img/grass.png')
 button_img = pygame.image.load('img/ttt.png')
+
+mixer.init()
+mixer.music.load('music/58337f2e15b9d5e6.wav')
+mixer.music.set_volume(0.2)
+mixer.music.play()
 
 def draw_text(text, font, text_col, x, y):
     '''draw text in game'''
@@ -207,6 +213,7 @@ while run:
         cloud_scroll = 0
     
     if game_over == True:
+        mixer.music.stop()
         if button.draw() == True:
             game_over = False
             score = reset_game()
