@@ -36,6 +36,7 @@ bg_cloud = pygame.image.load('img/cloud.png')
 bg_sea = pygame.image.load('img/sea.png')
 bg_grass = pygame.image.load('img/grass.png')
 button_img = pygame.image.load('img/gameover.png')
+score_img = pygame.image.load('img/score.png')
 # music
 mixer.init()
 mixer.music.load('music/58337f2e15b9d5e6.wav')
@@ -164,10 +165,9 @@ while run:
     screen.blit(bg, (0, 0))
 
     screen.blit(bg_sea, (0, 0))
-    
+
     screen.blit(bg_cloud, (cloud_scroll, 0))
     cloud_scroll -= cloud_speed
-    
 
     moai_group.draw(screen)
     moai_group.update()
@@ -182,7 +182,8 @@ while run:
             if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.right:
                 score += 1
                 pass_pipe = False
-    draw_text('Score : '+ str(score), font, color_txt, 40, 20)
+
+    draw_text(str(score), font, color_txt, 200, 20)
 
 
     #check moai touch grass and check moai touch pipe
@@ -225,6 +226,9 @@ while run:
             flying = True
 
     screen.blit(bg_grass, (grass_scroll, 25))
+
+    screen.blit(score_img, (40, 40))
+
     pygame.display.update()
 
 pygame.quit()
