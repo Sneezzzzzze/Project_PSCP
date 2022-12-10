@@ -15,7 +15,7 @@ pygame.display.set_caption('Moai\'s revenger')
 font = pygame.font.SysFont('Bauhaus 93', 60) #change font size and font here
 
 #define colours
-color_txt = (0, 0, 0) #you guys can changencolour here
+color_txt = (0, 0, 0) #you guys can change colour here
 
 #define game variables
 cloud_scroll = 0
@@ -28,7 +28,6 @@ pipe_gap = 180
 pipe_frequency = 1500 #milliseconds
 last_pipe = pygame.time.get_ticks() - pipe_frequency
 score = 0
-real_score = 0
 pass_pipe = False
 
 
@@ -37,7 +36,7 @@ bg_cloud = pygame.image.load('img/cloud.png')
 bg_sea = pygame.image.load('img/sea.png')
 bg_grass = pygame.image.load('img/grass.png')
 button_img = pygame.image.load('img/gameover.png')
-
+# music
 mixer.init()
 mixer.music.load('music/58337f2e15b9d5e6.wav')
 mixer.music.set_volume(0.2)
@@ -176,14 +175,15 @@ while run:
 
     #check the score
     if len(pipe_group) > 0:
-        if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.left and pass_pipe == False:
+        if moai_group.sprites()[0].rect.right < pipe_group.sprites()[0].rect.right \
+            and pass_pipe == False:
             pass_pipe = True
         if pass_pipe == True:
-            score += 1/20
             if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.right:
-                #score += (1/9)
+                score += 1
                 pass_pipe = False
-    draw_text('Score : '+ str(int(score)), font, color_txt, 40, 20)
+    draw_text('Score : '+ str(score), font, color_txt, 40, 20)
+
 
     #check moai touch grass and check moai touch pipe
     if flappy.rect.bottom >= 587 or pygame.sprite.groupcollide(moai_group, pipe_group, False, False) or flappy.rect.top < 0:
