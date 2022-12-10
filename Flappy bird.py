@@ -15,7 +15,7 @@ pygame.display.set_caption('Moai\'s revenger')
 font = pygame.font.SysFont('Bauhaus 93', 60) #change font size and font here
 
 #define colours
-color_txt = (0, 0, 0) #you guys can change colour here
+color_txt = (255, 165, 0) #you guys can change colour here
 
 #define game variables
 cloud_scroll = 0
