@@ -36,7 +36,7 @@ bg = pygame.image.load('img/background.png')
 bg_cloud = pygame.image.load('img/cloud.png')
 bg_sea = pygame.image.load('img/sea.png')
 bg_grass = pygame.image.load('img/grass.png')
-button_img = pygame.image.load('img/ttt.png')
+button_img = pygame.image.load('img/gameover.png')
 
 mixer.init()
 mixer.music.load('music/58337f2e15b9d5e6.wav')
@@ -156,7 +156,7 @@ flappy = Moai(60, 275) #position of moai with x, y
 moai_group.add(flappy)
 
 #create restart button instance
-button = Button(100, 150, button_img)
+button = Button(0, 0, button_img)
 
 run = True
 while run:
