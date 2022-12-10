@@ -126,13 +126,13 @@ class Pipe(pygame.sprite.Sprite):
         self.rect.x -= grass_speed
         if self.rect.right < 0:
             self.kill()
-            
+
 class Button():
     def __init__(self, x, y, image):
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
-        
+
     def draw(self):
         
         action = False
@@ -183,15 +183,13 @@ while run:
                 score += 1
                 real_score = score / 9
                 pass_pipe = False
-        else:
-            score *= 0
     draw_text('Score : '+str(int(real_score)), font, color_txt, 40, 20)
 
     #check moai touch grass and check moai touch pipe
     if flappy.rect.bottom >= 587 or pygame.sprite.groupcollide(moai_group, pipe_group, False, False) or flappy.rect.top < 0:
         game_over = True
     #look for collosion
-    
+
     if game_over == False and flying == True: #grass stop
 
         #generate new pipes
@@ -203,8 +201,8 @@ while run:
             pipe_group.add(btm_pipe)
             pipe_group.add(top_pipe)
             last_pipe = time_now
-        
-        
+
+
         grass_scroll -= grass_speed
         if abs(grass_scroll) > 540:
             grass_scroll = 0
