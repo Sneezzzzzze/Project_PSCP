@@ -43,6 +43,13 @@ def draw_text(text, font, text_col, x, y):
     screen.blit(img, (x, y))
 
 
+def reset_game():
+    pipe_group.empty()
+    flappy.rect.x = 60
+    flappy.rect.y = 275
+    score = 0
+    return score
+
 class Moai(pygame.sprite.Sprite):
     def __init__(self, x, y):
         """create moai sprite"""
@@ -121,8 +128,20 @@ class Button():
         self.rect.topleft = (x, y)
         
     def draw(self):
+        
+        action = False
+
+        #get mouse position
+        pos = pygame.mouse.get_pos()
+        
+        #check if mouse is over the button
+        if self.rect.collidepoint(pos):
+            if pygame.mouse.get_pressed()[0] == 1:
+                action = True
+
         #draw button
         screen.blit(self.image, (self.rect.x, self.rect.y))
+        return action
 
 moai_group = pygame.sprite.Group()
 pipe_group = pygame.sprite.Group()
@@ -188,7 +207,9 @@ while run:
         cloud_scroll = 0
     
     if game_over == True:
-        button.draw()
+        if button.draw() == True:
+            game_over = False
+            score = reset_game()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
