@@ -132,7 +132,6 @@ while run:
     screen.blit(bg_cloud, (cloud_scroll, 0))
     cloud_scroll -= cloud_speed
     
-    screen.blit(bg_grass, (grass_scroll, 25))
 
     moai_group.draw(screen)
     moai_group.update()
@@ -182,6 +181,7 @@ while run:
         if event.type == pygame.MOUSEBUTTONDOWN and flying == False and game_over == False:
             flying = True
 
+    screen.blit(bg_grass, (grass_scroll, 25))
     pygame.display.update()
 
 pygame.quit()
