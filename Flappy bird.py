@@ -12,10 +12,10 @@ screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Moai\'s revenger')
 
 #define font
-font = pygame.font.SysFont('Bauhaus 93', 60) #change font size and font here
+font = pygame.font.SysFont('Bauhaus 93', 50) #change font size and font here
 
 #define colours
-color_txt = (255, 165, 0) #you guys can change colour here
+color_txt = (157, 86, 6) #you guys can change colour here
 
 #define game variables
 cloud_scroll = 0
@@ -227,7 +227,7 @@ while run:
 
     screen.blit(bg_grass, (grass_scroll, 25))
 
-    screen.blit(score_img, (40, 40))
+    screen.blit(score_img, (40, 34))
 
     pygame.display.update()
 
