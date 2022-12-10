@@ -35,6 +35,7 @@ bg = pygame.image.load('img/background.png')
 bg_cloud = pygame.image.load('img/cloud.png')
 bg_sea = pygame.image.load('img/sea.png')
 bg_grass = pygame.image.load('img/grass.png')
+button_img = pygame.image.load('img/ttt.png')
 
 def draw_text(text, font, text_col, x, y):
     '''draw text in game'''
@@ -85,7 +86,7 @@ class Moai(pygame.sprite.Sprite):
                 if self.index >= len(self.images):
                     self.index = 0
             self.image = self.images[self.index]
-            
+
             #rotate the moai
             self.image = pygame.transform.rotate(self.images[self.index], self.garvity * -1)
         else:
@@ -112,7 +113,16 @@ class Pipe(pygame.sprite.Sprite):
         self.rect.x -= grass_speed
         if self.rect.right < 0:
             self.kill()
-
+            
+class Button():
+    def __init__(self, x, y, image):
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)
+        
+    def draw(self):
+        #draw button
+        screen.blit(self.image, (self.rect.x, self.rect.y))
 
 moai_group = pygame.sprite.Group()
 pipe_group = pygame.sprite.Group()
@@ -120,6 +130,8 @@ flappy = Moai(60, 275) #position of moai with x, y
 
 moai_group.add(flappy)
 
+#create restart button instance
+button = Button(100, 150, button_img)
 
 run = True
 while run:
@@ -174,6 +186,9 @@ while run:
 
     if abs(cloud_scroll) > 540:
         cloud_scroll = 0
+    
+    if game_over == True:
+        button.draw()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
