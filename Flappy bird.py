@@ -181,9 +181,8 @@ while run:
         if pass_pipe == True:
             if moai_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.right:
                 score += 1
-                real_score = score / 9
                 pass_pipe = False
-    draw_text('Score : '+str(int(real_score)), font, color_txt, 40, 20)
+    draw_text('Score : '+str(int(score)), font, color_txt, 40, 20)
 
     #check moai touch grass and check moai touch pipe
     if flappy.rect.bottom >= 587 or pygame.sprite.groupcollide(moai_group, pipe_group, False, False) or flappy.rect.top < 0:
