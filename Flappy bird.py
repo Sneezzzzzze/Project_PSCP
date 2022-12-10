@@ -41,7 +41,7 @@ button_img = pygame.image.load('img/ttt.png')
 mixer.init()
 mixer.music.load('music/58337f2e15b9d5e6.wav')
 mixer.music.set_volume(0.2)
-mixer.music.play()
+mixer.music.play(10000)
 
 def draw_text(text, font, text_col, x, y):
     '''draw text in game'''
