@@ -213,7 +213,6 @@ while run:
         cloud_scroll = 0
     
     if game_over == True:
-        mixer.music.stop()
         if button.draw() == True:
             game_over = False
             score = reset_game()
