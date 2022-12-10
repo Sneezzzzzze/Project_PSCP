@@ -183,6 +183,8 @@ while run:
                 score += 1
                 real_score = score / 9
                 pass_pipe = False
+        else:
+            score *= 0
     draw_text('Score : '+str(int(real_score)), font, color_txt, 40, 20)
 
     #check moai touch grass and check moai touch pipe
