@@ -36,11 +36,7 @@ bg = pygame.image.load('img/background.png')
 bg_cloud = pygame.image.load('img/cloud.png')
 bg_sea = pygame.image.load('img/sea.png')
 bg_grass = pygame.image.load('img/grass.png')
-<<<<<<< HEAD
 button_img = pygame.image.load('img/gameover.png')
-=======
-button_img = pygame.image.load('img/backscreeen.png')
->>>>>>> 1fc1c3b7a0bacf31e471c20250dea5271a161e2f
 
 mixer.init()
 mixer.music.load('music/58337f2e15b9d5e6.wav')
