@@ -7,3 +7,4 @@
 ## Day 6 trying to add score
 ## Day 7 finally I can fix score
 ## Day 8 Adding Reset Button, Add Gameover and Front screen Sprite
+## Day 9 Adding Start Butoon 
