@@ -37,11 +37,12 @@ bg_sea = pygame.image.load('img/sea.png')
 bg_grass = pygame.image.load('img/grass.png')
 button_img = pygame.image.load('img/gameover.png')
 score_img = pygame.image.load('img/score.png')
+start_img = pygame.image.load('img/start.png')
 # music
 mixer.init()
 mixer.music.load('music/58337f2e15b9d5e6.wav')
 mixer.music.set_volume(0.2)
-mixer.music.play(10000)
+
 
 def draw_text(text, font, text_col, x, y):
     '''draw text in game'''
@@ -157,7 +158,7 @@ moai_group.add(flappy)
 
 #create restart button instance
 button = Button(0, 0, button_img)
-
+start_button = Button(0, 0, start_img)
 run = True
 while run:
     clock.tick(fps)
@@ -228,7 +229,12 @@ while run:
     screen.blit(bg_grass, (grass_scroll, 25))
 
     screen.blit(score_img, (40, 34))
-
+    if game_over == False:
+        if flying == False:
+            screen.fill((202, 228, 241))
+            start_button.draw()
+            mixer.music.play(10000)
+            
     pygame.display.update()
 
 pygame.quit()
