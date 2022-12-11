@@ -42,7 +42,7 @@ start_img = pygame.image.load('img/start.png')
 mixer.init()
 mixer.music.load('music/58337f2e15b9d5e6.wav')
 mixer.music.set_volume(0.2)
-
+mixer.music.play(10000)
 
 def draw_text(text, font, text_col, x, y):
     '''draw text in game'''
@@ -233,8 +233,7 @@ while run:
         if flying == False:
             screen.fill((202, 228, 241))
             start_button.draw()
-            mixer.music.play(10000)
-            
+
     pygame.display.update()
 
 pygame.quit()
