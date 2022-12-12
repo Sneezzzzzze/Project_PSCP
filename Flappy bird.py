@@ -88,7 +88,7 @@ class Moai(pygame.sprite.Sprite):
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                 self.clicked = True
                 self.garvity = -7
-            if pygame.mouse.get_pressed()[0] == 1:
+            if pygame.mouse.get_pressed()[0] == 0:
                 self.clicked = False
 
             #maoi gif
