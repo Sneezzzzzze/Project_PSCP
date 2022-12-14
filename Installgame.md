@@ -12,5 +12,5 @@
 ![image](https://user-images.githubusercontent.com/110179731/207566533-3339120d-c883-42ac-9294-0b1ab963d255.png)
 6.คลิกที่โฟลเดอร์ Project_PSCP
 ![image](https://user-images.githubusercontent.com/110179731/207566220-5ce431e3-4475-4cab-b807-19819bc7ff90.png)
-7.คลิกที่ไฟล์ Moai's_revenger ได้เลย ถ้า OS ของคุณแจ้งเตือนอะไรขึ้นมาให้คลิกที่ More option แล้วคลิก Run anyway ได้เลย
+7.คลิกที่ไฟล์ Moai's_revenger.exe ได้เลย ถ้า OS ของคุณแจ้งเตือนอะไรขึ้นมาให้คลิกที่ More option แล้วคลิก Run anyway ได้เลย
 ![image](https://user-images.githubusercontent.com/110179731/207566719-0ba1259f-0089-4002-a497-8baf4396dfdf.png)
