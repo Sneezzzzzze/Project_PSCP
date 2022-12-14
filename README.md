@@ -8,3 +8,5 @@
 ## Day 7 finally I can fix score
 ## Day 8 Adding Reset Button, Add Gameover and Front screen Sprite
 ## Day 9 Adding Start Butoon 
+### Install Game Moai's revenger
+#### https://drive.google.com/drive/folders/19kMiZq-24dXCVNrEC_aDvQYSpZBvZGpi?usp=sharing
